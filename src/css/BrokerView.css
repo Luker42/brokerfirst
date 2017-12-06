@@ -1,0 +1,48 @@
+.broker {
+	
+}
+.broker-avatar-container {
+	margin-top: 10px;
+	margin-left: 10px;
+}
+.broker-avatar {
+	height: 76px;
+	width: 64px;
+}
+.brokerview-availability {
+	margin-top: 10px;
+	width: 600px;
+	height: 400px;
+	background-color: lightgrey;
+	margin-left: 560px;
+}
+.broker-rating {
+	width: 100%;
+}
+.brokerview-info {
+	width: 500px;
+	height: 600px;
+	float: left;
+	margin-left: 20px;
+	margin-top: 10px;
+	background-color: #f7f7f7;
+	border-style: solid;
+	border-width: 1px;
+	border-color: lightgrey;
+}
+.brokerview-top-container {
+	width: 100%;
+	float: left;
+}
+.brokerview-middle-container {
+	width: 100%;
+	float: left;
+}/*
+.brokerview-listings {
+	float: left;
+}
+.brokerview-reviews {
+	margin-right: 45%;
+	float: right;
+}*/
+

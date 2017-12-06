@@ -1,0 +1,18 @@
+.broker-overview-body-container {
+	width:100%;
+	height: 100%;
+}
+.broker-overview-container {
+	height: 100%;
+	width: 85%;
+	margin-left: auto;
+	margin-right: auto;
+}
+.broker-overview-top-container {
+	height: 250px;
+	width: 100%;
+	background-color: #f7f7f7;
+}
+.broker-list {
+
+}

@@ -1,0 +1,44 @@
+.header-full {
+	width: 100%;
+	background-color: #404040;
+	height: 80px;
+	min-width: 1400px;
+}
+.header {
+	width: 100%;
+	height: 80px;
+	margin: 0 auto;
+}
+.header-logo {
+	float:left;
+	font-size: 36pt;
+	font-weight: bold;
+	margin: auto 0;
+	line-height: 80px;
+}
+.header-logo-link {
+	text-decoration: none;
+	color: #999;
+}
+.navigation {
+	float:right;
+    list-style-type: none;
+    padding: 0;
+    height:80px;
+}
+.navigation-element{
+	float:left;
+} 
+.navigation-element-link {
+    display: block;
+    width: 40%;
+    color:#999;
+    text-decoration: none;
+    padding:10px;
+    font-size:16pt;
+}
+
+.navigation-element-link:hover {
+    font-size:18pt;
+}
+
