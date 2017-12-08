@@ -1,5 +1,6 @@
-.broker {
-	
+.brokerview-container {
+	width: 95%;
+	margin: 0 auto;
 }
 .broker-avatar-container {
 	margin-top: 10px;
@@ -10,8 +11,8 @@
 	width: 64px;
 }
 .brokerview-availability {
-	margin-top: 10px;
-	width: 600px;
+	margin: 10px;
+	width: 45%;
 	height: 400px;
 	background-color: lightgrey;
 	margin-left: 560px;
@@ -37,12 +38,11 @@
 .brokerview-middle-container {
 	width: 100%;
 	float: left;
-}/*
+}
 .brokerview-listings {
 	float: left;
 }
 .brokerview-reviews {
-	margin-right: 45%;
 	float: right;
-}*/
+}
 

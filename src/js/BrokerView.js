@@ -3,7 +3,10 @@ import axios from 'axios';
 import StarRating from 'react-star-ratings';
 import Page from './Page';
 import Review from './Review';
+import { Col, Row } from 'react-grid-system'; 
 import '../css/BrokerView.css';
+
+const adjustRight = {'margin-right': '40px' };
 
 class BrokerView extends Component {
   state = {
@@ -110,17 +113,27 @@ class BrokerView extends Component {
       <Page 
         pageContent={(
           <div className="brokerview-container">
-            <div className="brokerview-info">
+            <Row>
+            <Col
+              lg={4} 
+              className="brokerview-info"
+              style={adjustRight}
+            >
               {this.brokerInfo()}
-            </div>
-            <div className="brokerview-availability">
+            </Col>
+            <Col lg={7} className="brokerview-availability">
               {this.brokerAvailability()}
-            </div>
-            <div className="brokerview-middle-container">
-              <div className="brokerview-listings">
+            </Col>
+            </Row>
+            <Row className="brokerview-middle-container">
+              <Col
+                lg={4}
+                className="brokerview-listings"
+                style={adjustRight}
+              >
                 <h2>Check out this broker's listings!</h2>
-              </div>
-              <div className="brokerview-reviews">              
+              </Col>
+              <Col lg={7} className="brokerview-reviews">              
                 <h2>Verified Reviews</h2>
                 {this.state.reviews.length > 0 &&
                   this.state.reviews.map((review) => {
@@ -137,8 +150,8 @@ class BrokerView extends Component {
                     Apologies, this broker doesn't have any reviews yet. But trust us, we'll vouch for them.
                   </div>
                 }
-              </div>
-            </div>
+              </Col>
+            </Row>
           </div>
         )}
       />
