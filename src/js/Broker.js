@@ -31,6 +31,8 @@ class Broker extends Component {
             rating={Math.round(this.props.broker_rating * 10) / 10}
             starWidthAndHeight={'20px'}
             numOfStars={5}
+            starRatedColor={'#f8f90d'}
+            starEmptyColor={'rgb(109, 122, 130)'}
           />
           <a href="#" className="broker-reviews-button">
             Reviews...

@@ -1,5 +1,6 @@
 .home {
 	height: 100vh;
+  margin-top: -40px;
 }
 .home-hero-image {
 	background-image: url('../images/nyc-skyline-3.jpg');

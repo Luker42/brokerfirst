@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Page from './Page';
 import Broker from './Broker';
+import _ from 'underscore';
 import { Link } from 'react-router-dom';
 import '../css/BrokerOverview.css';
 
@@ -30,14 +31,33 @@ class BrokerOverview extends Component {
       }
     }).then((response) => {
       console.log(response);
-      this.setState({brokers: response.data})
+      this.setState({brokers: response.data});
+      this.loadAdditionalBrokerInfo(response.data.map(broker => broker.broker_id));
     }).catch((error) => {
       console.log('s');
     });
   };
 
+  loadAdditionalBrokerInfo = (brokerIds) => {
+    axios.get('http://localhost:8888/get_additional_broker_info.php', {
+      params: {
+        brokerIds: brokerIds
+      }
+    }).then((response) => {
+      console.log(response);
+      this.setState((prevState) => {
+        return {
+          brokers: _.map(prevState.brokers, function(broker){
+                    return _.extend(broker, _.findWhere(response.data, { broker_id: broker.broker_id }));
+                  })
+        }
+      });
+    }).catch((error) => {
+      console.log(error)
+    });
+  }
+
   render() {
-    console.log(this.props);
     return (
       <Page 
       	pageContent={

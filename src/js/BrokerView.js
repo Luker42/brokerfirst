@@ -6,7 +6,7 @@ import Review from './Review';
 import { Col, Row } from 'react-grid-system'; 
 import '../css/BrokerView.css';
 
-const adjustRight = {'margin-right': '40px' };
+const adjustRight = {'marginRight': '40px' };
 
 class BrokerView extends Component {
   state = {
@@ -94,6 +94,8 @@ class BrokerView extends Component {
             rating={Math.round(this.state.broker.broker_rating * 10) / 10}
             starWidthAndHeight={'20px'}
             numOfStars={5}
+            starRatedColor={'#f8f90d'}
+            starEmptyColor={'rgb(109, 122, 130)'}
           />
         </div>
       </div>
