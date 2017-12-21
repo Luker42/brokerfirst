@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import StarRating from 'react-star-ratings';
 import Page from './Page';
+import _ from 'underscore';
 import Review from './Review';
 import { Col, Row } from 'react-grid-system'; 
 import '../css/BrokerView.css';
@@ -43,6 +44,7 @@ class BrokerView extends Component {
           {broker: response.data},
           () => {
             this.loadBrokerReviews();
+            this.loadAdditionalBrokerInfo([this.state.brokerId]);
           }
         )
       } else {
@@ -52,6 +54,28 @@ class BrokerView extends Component {
       console.log(error)
     });
   };
+
+  /**
+  * Loads additional broker info after initial broker page load
+  */
+  loadAdditionalBrokerInfo = (brokerIds) => {
+    axios.get('http://localhost:8888/get_additional_broker_info.php', {
+      params: {
+        brokerIds: brokerIds
+      }
+    }).then((response) => {
+      console.log(response);
+      if (response.data.length === 1) {
+        this.setState((prevState) => {
+          return {
+            broker: Object.assign(prevState.broker, response.data[0])
+          }
+        });
+      }
+    }).catch((error) => {
+      console.log(error)
+    });
+  }
 
   /**
   * Lazy loading reviews after info data is received
@@ -97,6 +121,18 @@ class BrokerView extends Component {
             starRatedColor={'#f8f90d'}
             starEmptyColor={'rgb(109, 122, 130)'}
           />
+        </div>
+        <div className="broker-bio">
+          Bio: {this.state.broker.broker_bio}
+        </div>
+        <div className="broker-experience">
+          Experience: {this.state.broker.broker_experience}
+        </div>
+        <div className="broker-interests">
+          Interests: {this.state.broker.broker_interests}
+        </div>
+        <div className="broker-bio">
+          Education: {this.state.broker.broker_education}
         </div>
       </div>
     );
