@@ -1,15 +1,14 @@
 .home {
-	height: 100vh;
+	min-height: 100vh;
   margin-top: -40px;
 }
 .home-hero-image {
 	background-image: url('../images/nyc-skyline-3.jpg');
 	background-size: cover;
-	height:70%;
+	height:70vh;
 	width:100vw;
 	min-width: 1400px;
 	display: table;
-	position:absolute;
 }
 .neighborhood-vertical-align {
 	display: table-cell;
@@ -51,6 +50,66 @@
 	width: 50%;
 	margin: auto;
 }
+.home-middle-content {
+  overflow: hidden;
+  width: 100%;
+  background-color: lightgrey;
+}
+.home-content {
+  overflow: hidden;
+  padding: 40px 0;
+  height: 400px;
+  width: 75%;
+  margin: 0 auto;
+}
+.home-broker-join-left { 
+  width: 50%;
+  float: left;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.home-section-title {
+  font-size: 36pt;
+}
+.home-broker-join-list {
+  font-size: 18pt;
+}
+.home-broker-join-list-element {
+  padding-bottom: 20px;
+}
+.home-broker-join-icon {
+  float: right;
+}
+.home-broker-join-icon-svg {
+  height: 400px;
+  width: 400px;
+}
+.home-broker-join-button {
+  padding: 17px 17px;
+  color:#416dea;
+  border: 2px solid #416dea;
+  background: white;
+
+  font-size: 13px;
+  font-weight: 500;
+
+  justify-content: center;
+  align-items: center;
+  flex: 0 0 160px;
+
+  box-shadow: 2px 5px 10px #e4e4e4;
+}
+.home-broker-join-button:hover {
+  color:#FFFFFF;
+  border: 2px solid #416dea;
+  background-color: #416dea;
+}
+.home-broker-join-button-router {
+  text-decoration: none;
+  fill: #FFFFFF;
+}
+
 .react-autosuggest__container {
   position: relative;
 }

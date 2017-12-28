@@ -33,7 +33,12 @@ class Header extends Component {
 	        			<a className='navigation-element-link' href=''>About</a>
 	        		</li>
 	        		<li className='navigation-element'>
-	        			<a className='navigation-element-link' href=''>Login</a>
+	        			<Link
+        					to='/login'
+        					className='navigation-element-link'
+	        			>
+	        				Login
+	        			</Link>
 	        		</li>
 	        	</ul> 
 	        </div>

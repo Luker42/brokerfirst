@@ -4,6 +4,7 @@ import StarRating from 'react-star-ratings';
 import Page from './Page';
 import _ from 'underscore';
 import Review from './Review';
+import Listing from './Listing';
 import { Col, Row } from 'react-grid-system'; 
 import '../css/BrokerView.css';
 
@@ -13,7 +14,8 @@ class BrokerView extends Component {
   state = {
     brokerId: '',
     broker: {},
-    reviews: []
+    reviews: [],
+    listings: []
   };
 
   componentDidMount = () => {
@@ -24,7 +26,8 @@ class BrokerView extends Component {
         };
       }
     }, () => {
-        this.loadBrokerInfo()
+        this.loadBrokerInfo();
+        this.loadListings();
       }
     );  
   };
@@ -64,7 +67,6 @@ class BrokerView extends Component {
         brokerIds: brokerIds
       }
     }).then((response) => {
-      console.log(response);
       if (response.data.length === 1) {
         this.setState((prevState) => {
           return {
@@ -86,9 +88,25 @@ class BrokerView extends Component {
         brokerId: this.state.brokerId
       }
     }).then((response) => {
-      console.log(response)
       if (response.data) {
         this.setState({reviews: response.data});
+      }
+    }).catch((error) => {
+      console.log(error)
+    });
+  };
+
+  /**
+  * Lazy loading listings
+  */
+  loadListings = () => {
+    axios.get('http://localhost:8888/get_broker_listings.php', {
+      params: {
+        brokerId: this.state.brokerId
+      }
+    }).then((response) => {
+      if (response.data) {
+        this.setState({listings: response.data})
       }
     }).catch((error) => {
       console.log(error)
@@ -169,7 +187,24 @@ class BrokerView extends Component {
                 className="brokerview-listings"
                 style={adjustRight}
               >
-                <h2>Check out this broker's listings!</h2>
+                <div className='brokerview-listings-container'>
+                  <h2>Check out this broker's listings!</h2>
+                  {this.state.listings.length > 0 && 
+                    this.state.listings.map((listing) => {
+                      return (
+                        <Listing
+                          key={listing.listing_id}
+                          {...listing}
+                        />
+                      );
+                    })
+                  }
+                  {this.state.listings.length === 0 &&
+                    <div className='brokerview-no-listings'>
+                      Sorry, this broker doesn't have any listings currently
+                    </div>
+                  }
+                </div>
               </Col>
               <Col lg={7} className="brokerview-reviews">              
                 <h2>Verified Reviews</h2>

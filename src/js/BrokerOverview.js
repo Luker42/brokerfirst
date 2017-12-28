@@ -4,6 +4,7 @@ import Page from './Page';
 import Broker from './Broker';
 import _ from 'underscore';
 import { Link } from 'react-router-dom';
+import { Col, Row } from 'react-grid-system'; 
 import '../css/BrokerOverview.css';
 
 class BrokerOverview extends Component {
@@ -65,6 +66,14 @@ class BrokerOverview extends Component {
           <div className="broker-overview-body-container">
             <div className="broker-overview-container">
               <div className="broker-overview-top-container">
+                <Row>
+                  <Col size={4}>
+                  <label>
+                    Price: <input type="text" placeholder="Min"/>
+                    to <input type="text" placeholder="Max"/>
+                  </label>
+                  </Col>
+                </Row>
                 <div className="neighborhoods">
 
                 </div>

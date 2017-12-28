@@ -65,63 +65,99 @@ class Home extends Component {
 	  return (
 		  <div className="inputContainer">
 		    <input {...inputProps} />
-				<button
-					className="homepage-neighborhood-search"
+		    <Link
+					className="neighborhood-router-link"
+					to={`/search/${this.state.neighborhoods.map(a => a.neighborhood_id)}`}
 				>
-					<Link
-						className="neighborhood-router-link"
-						to={`/search/${this.state.neighborhoods.map(a => a.neighborhood_id)}`}
+					<button
+						className="homepage-neighborhood-search"
 					>
-						<i className="fa fa-search" aria-hidden="true"></i>
-					</Link>
-				</button>
+							<i className="fa fa-search" aria-hidden="true"></i>
+					</button>
+				</Link>
 		  </div>
 	  );
+ 	}
+
+ 	Homepage = () => {
+ 		return (
+ 			<div className='home'>
+    		<div className='home-hero-image'>
+    			<div className='neighborhood-vertical-align'>
+      			<div className='neighborhood-autosuggest'>
+	      			<Autosuggest
+	      				suggestions={this.state.neighborhoodOptions}
+	      				onSuggestionsFetchRequested={this.getNeighborhoods}
+	      				onSuggestionsClearRequested={() => this.setState({neighborhoodOptions: []})}
+	      				getSuggestionValue={this.getNeighborhoodSuggestionValue}
+	      				renderSuggestion={this.renderNeighborhoodSuggestion}
+	      				onSuggestionSelected={this.onSuggestionSelected}
+	      				renderInputComponent={this.renderInputComponent}
+	      				inputProps={{
+	      					value: this.state.neighborhood,
+	      					placeholder: !(this.state.neighborhoods.length < 5) ? 'Only allowed 5 neighborhoods' : 'Add neighborhoods',
+	    						onChange: this.onChange,
+	    						disabled: !(this.state.neighborhoods.length < 5)
+	    					}}
+	    				/>
+	   					<div>
+	   						{
+	   							this.state.neighborhoods.map((neighborhood) => {
+	   								return (
+	   									<Tag
+	   										key={neighborhood.neighborhood_id}
+	   										label={neighborhood.neighborhood_name}
+	   										value={neighborhood.neighborhood_id}
+	   										removeTag={this.removeTag}
+	   									/>
+	   								);
+	   							})
+	   						}
+	   					</div>
+   					</div>
+ 					</div>
+    		</div>
+    		<div className='home-middle-content'>
+    			<div className='home-content'>
+    			<div className='home-broker-join-left'>
+	    			<div className='home-section-title'>
+	    				Are you NOT a shit broker?
+	    			</div>
+    				<ul className='home-broker-join-list'>
+    					<li className='home-broker-join-list-element'>
+    						Broker's benefit when they sign up with us! 
+    					</li>
+    					<li className='home-broker-join-list-element'>
+    						Sign up is a breeze, simply make a premium account and update your calendar
+    					</li>
+    					<li className='home-broker-join-list-element'>
+    						Brokers love the increase in business!
+    					</li>
+    				</ul>
+    				<Link
+							className="home-broker-join-button-router"
+							to='/search/'
+						>
+							<button
+								className="home-broker-join-button"
+							>
+								Enroll as a broker
+					</button>
+				</Link>
+    			</div>
+    			<div className='home-broker-join-icon'>
+    				<img src='icons/city.svg' className='home-broker-join-icon-svg' />
+    			</div>
+    			</div>
+    		</div>
+      </div>
+    );
  	}
 
   render() {
     return (
       <Page 
-      	pageContent={(
-      		<div className='home'>
-	      		<div className='home-hero-image'>
-	      			<div className='neighborhood-vertical-align'>
-		      			<div className='neighborhood-autosuggest'>
-			      			<Autosuggest
-			      				suggestions={this.state.neighborhoodOptions}
-			      				onSuggestionsFetchRequested={this.getNeighborhoods}
-			      				onSuggestionsClearRequested={() => this.setState({neighborhoodOptions: []})}
-			      				getSuggestionValue={this.getNeighborhoodSuggestionValue}
-			      				renderSuggestion={this.renderNeighborhoodSuggestion}
-			      				onSuggestionSelected={this.onSuggestionSelected}
-			      				renderInputComponent={this.renderInputComponent}
-			      				inputProps={{
-			      					value: this.state.neighborhood,
-			      					placeholder: !(this.state.neighborhoods.length < 5) ? 'Only allowed 5 neighborhoods' : 'Add neighborhoods',
-			    						onChange: this.onChange,
-			    						disabled: !(this.state.neighborhoods.length < 5)
-			    					}}
-			    				/>
-			   					<div>
-			   						{
-			   							this.state.neighborhoods.map((neighborhood) => {
-			   								return (
-			   									<Tag
-			   										key={neighborhood.neighborhood_id}
-			   										label={neighborhood.neighborhood_name}
-			   										value={neighborhood.neighborhood_id}
-			   										removeTag={this.removeTag}
-			   									/>
-			   								);
-			   							})
-			   						}
-			   					</div>
-			   					
-		   					</div>
-	   					</div>
-	      		</div>
-       		</div>
-        )}
+      	pageContent={this.Homepage()}
       />
     );
   }
