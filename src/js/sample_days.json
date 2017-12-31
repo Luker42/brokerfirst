@@ -1,0 +1,104 @@
+{
+	'monday': [
+		'1:00PM',
+		'2:00PM',
+		'3:00PM'
+	],
+	'tuesday': [
+		'10:00AM',
+		'11:00AM',
+		'3:00PM'
+	],
+	'wednesday': [
+		'1:00PM',
+		'3:00PM'
+	],
+	'thursday': [
+		'10:00AM',
+		'11:00AM',
+		'1:00PM',
+		'2:00PM',
+		'3:00PM'
+	],
+	'friday': [
+		'1:00PM',
+		'2:00PM',
+		'3:00PM'
+	],
+	'saturday': [
+		'1:00PM',
+	],
+	'sunday': [
+		'8:00AM',
+		'9:00AM',
+		'10:00AM',
+		'11:00AM',
+		'12:00PM'
+		'1:00PM',
+		'2:00PM',
+		'3:00PM'
+	]
+}
+
+[
+	[
+		{
+			'day': 'Monday',
+			'time': 8:00AM
+		},
+		{
+			'day': 'Tuesday',
+			'time': '12:00PM'
+		},
+		{
+			'day': 'Wednesday',
+			'time': 9:00AM
+		},
+		{
+			'day': 'Thursday',
+			'time': 1:00PM
+		},
+		{
+			'day': 'Friday',
+			'time': null
+		},
+		{
+			'day': 'Saturday',
+			'time': 9:00AM
+		},
+		{
+			'day': 'Sunday,
+			'time': 1:00PM
+		},
+	],
+	[
+		{
+			'day': 'Monday',
+			'time': 9:00AM
+		},
+		{
+			'day': 'Tuesday',
+			'time': null
+		},
+		{
+			'day': 'Wednesday',
+			'time': 11:00AM
+		},
+		{
+			'day': 'Thursday',
+			'time': 3:00PM
+		},
+		{
+			'day': 'Friday',
+			'time': null
+		},
+		{
+			'day': 'Saturday',
+			'time': 10:00AM
+		},
+		{
+			'day': 'Sunday,
+			'time': 2:00PM
+		},
+	]
+]

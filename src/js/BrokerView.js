@@ -5,6 +5,7 @@ import Page from './Page';
 import _ from 'underscore';
 import Review from './Review';
 import Listing from './Listing';
+import Availability from './Availability';
 import { Col, Row } from 'react-grid-system'; 
 import '../css/BrokerView.css';
 
@@ -159,6 +160,7 @@ class BrokerView extends Component {
   brokerAvailability = () => {
     return (
       <div className="brokerview-availability">
+        <Availability/>
       </div>
     );
   }
@@ -177,7 +179,8 @@ class BrokerView extends Component {
             >
               {this.brokerInfo()}
             </Col>
-            <Col lg={7} className="brokerview-availability">
+            <Col lg={7}>
+              <h2>Availability</h2>
               {this.brokerAvailability()}
             </Col>
             </Row>
