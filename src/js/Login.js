@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import Page from '../js/Page';
 import { Redirect } from 'react-router-dom'
 import '../css/Login.css';
@@ -55,6 +54,17 @@ class Login extends Component {
 						      		onClick={this.handleFormTypeChange}
 						      	>
 						      		Sign In
+						      	</a>
+						      </p>
+						      <p className="message">Are you a broker?&nbsp;
+						      	<a 
+						      		href=""
+						      		onClick={(e) => {
+						      			e.preventDefault();
+						      			window.location = '/broker_account_creation';
+						      		}}
+						      	>
+						      		Register here
 						      	</a>
 						      </p>
 						    </div>

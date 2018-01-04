@@ -11,7 +11,7 @@ const Review = (props) => {
 	        	rating={props.review_rating}
 	        	starWidthAndHeight={'20px'}
 	        	numOfStars={5}
-	        	starRatedColor={'#f8f90d'}
+	        	starRatedColor={'#f6b85c'}
 	        	starEmptyColor={'rgb(109, 122, 130)'}
 	      	/>
 	      	<br/>

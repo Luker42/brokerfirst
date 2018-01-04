@@ -1,8 +1,9 @@
 .header-full {
-	width: 100%;
+	width: calc(100% - 40px);
 	background-color: #404040;
 	height: 80px;
 	min-width: 1400px;
+	padding: 0 20px;
 }
 .header {
 	width: 100%;

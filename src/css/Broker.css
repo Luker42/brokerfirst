@@ -1,34 +1,69 @@
 .broker {
-	width: 95%;
+	width: 900px;
+	min-width: 900px;
 	height: 150px;
-	margin-left: auto;
-	margin-right: auto;
+	padding: 10px;
+	margin-left: 320px;
 	margin-top: 10px;
 	background-color: #f7f7f7;
 	border-style: solid;
 	border-width: 1px;
 	border-color: lightgrey;
 }
+.broker:hover {
+	box-shadow: 0 0 11px rgba(33,33,33,.2); 
+}
 .broker-avatar-container {
 	margin-top: 10px;
 	margin-left: 10px;
 }
 .broker-avatar {
-	height: 76px;
-	width: 64px;
-}
-.broker-info {
-
-}
-.broker-availability {
-	float: right;
+	height: 120px;
+	width: 120px;
+	border-radius: 50%;
 }
 .broker-rating {
 	width: 100%;
 }
-.broker-reviews-button {
-	float: right;
+.broker-name {
+	font-size: 22pt;
 }
-.star-ratings {
-	
+.brokerage {
+	font-size: 16pt;
+}
+.next-available {
+	text-align: center;
+}
+.next-available-button {
+  padding: 17px 17px;
+  color:#416dea;
+  border: 2px solid #416dea;
+  background: white;
+
+  font-size: 13px;
+  font-weight: 500;
+
+  justify-content: center;
+  align-items: center;
+  flex: 0 0 160px;
+
+  box-shadow: 2px 5px 10px #e4e4e4;
+  margin-top: 20px;
+}
+.next-available-button:hover {
+	color:#FFFFFF;
+  border: 2px solid #416dea;
+  background-color: #416dea;
+}
+.next-available-text {
+	font-size: 16pt;
+	text-align: center;
+}
+.broker-info-col {
+	display: table;
+	height: 100%;
+}
+.broker-info {
+	display: inline-block;
+	vertical-align: middle;
 }

@@ -116,42 +116,49 @@ class BrokerView extends Component {
 
   brokerInfo = () => {
     return (
-      <div className="broker">
+      <div className="brokerview-info">
         <div className="broker-avatar-container">
           <img
-            className="broker-avatar"
+            className="brokerview-avatar"
             src={this.state.broker.broker_avatar}
             alt={this.state.broker.broker_alt}
           />
-        </div>
-        <div className="broker-info">
-          <div className="broker-name">
-            {`${this.state.broker.broker_first_name} ${this.state.broker.broker_last_name}`}
+          <div className="brokerview-avatar-info">
+            <div className="brokerview-name">
+              {`${this.state.broker.broker_first_name} ${this.state.broker.broker_last_name}`}
+            </div>
+            <a href="#" className="brokerage">
+              {this.state.broker.brokerage_name}
+            </a>
+            <div>
+              <StarRating
+                rating={Math.round(this.state.broker.broker_rating * 10) / 10}
+                starWidthAndHeight={'20px'}
+                numOfStars={5}
+                starRatedColor={'#f6b85c'}
+                starEmptyColor={'rgb(109, 122, 130)'}
+              />
+            </div>
           </div>
-          <a href="#" className="brokerage">
-            {this.state.broker.brokerage_name}
-          </a>
         </div>
-        <div className="broker-rating">
-          <StarRating
-            rating={Math.round(this.state.broker.broker_rating * 10) / 10}
-            starWidthAndHeight={'20px'}
-            numOfStars={5}
-            starRatedColor={'#f8f90d'}
-            starEmptyColor={'rgb(109, 122, 130)'}
-          />
-        </div>
-        <div className="broker-bio">
+        <div className="brokerview-info-line">
           Bio: {this.state.broker.broker_bio}
         </div>
-        <div className="broker-experience">
+        <div className="brokerview-info-line">
           Experience: {this.state.broker.broker_experience}
         </div>
-        <div className="broker-interests">
+        <div className="brokerview-info-line">
           Interests: {this.state.broker.broker_interests}
         </div>
-        <div className="broker-bio">
+        <div className="brokerview-info-line">
           Education: {this.state.broker.broker_education}
+        </div>
+        <div className="brokerview-info-line">
+          <button
+              className="brokerview-message-button"
+            >
+              {`Message ${this.state.broker.broker_first_name}`}
+          </button>
         </div>
       </div>
     );

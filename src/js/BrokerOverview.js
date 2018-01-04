@@ -4,25 +4,49 @@ import Page from './Page';
 import Broker from './Broker';
 import _ from 'underscore';
 import { Link } from 'react-router-dom';
-import { Col, Row } from 'react-grid-system'; 
+import Sticky from 'react-stickynode';
+import Select from 'react-select';
+import Autosuggest from 'react-autosuggest';
+import Tag from './Tag';
+import 'react-select/dist/react-select.css';
 import '../css/BrokerOverview.css';
 
 class BrokerOverview extends Component {
   state = {
     brokers: [],
     neighborhoods: [],
-    brokerIndex: 1
+    brokerIndex: 1,
+    lastScroll: 0,
+    showingStickyHeader: false,
+    languageFilter: {
+      label: 'English',
+      value: 1
+    },
+    timeOfDayFilter: {
+      label: '',
+      value: 0
+    },
+    neighborhoodOptions: [],
+    neighborhood: "",
+    neighborhoods: []
   }
 
   // Set state to passed in neighborhoods and call load brokers as callback
   componentDidMount = () => {
+    window.onscroll = this.horizontalPositionStickyFilters;
     this.setState(() => {
       if (typeof(this.props.match.params.neighborhoods) !== 'undefined') {
         return {
           neighborhoods: this.props.match.params.neighborhoods
         };
       }
-    }, this.loadBrokers());   
+    }, this.loadBrokers());
+  };
+
+  horizontalPositionStickyFilters = () => {
+    const stickyInnerWrapper = document.getElementsByClassName('sticky-inner-wrapper')[0];
+    const positionLeft = stickyInnerWrapper.style.position === 'relative' ? '0px' : `${(100 - window.scrollX).toString()}px`; 
+    stickyInnerWrapper.style.left = positionLeft;
   };
 
   loadBrokers = () => {
@@ -31,11 +55,10 @@ class BrokerOverview extends Component {
         neighborhoods: this.state.neighborhoods
       }
     }).then((response) => {
-      console.log(response);
       this.setState({brokers: response.data});
       this.loadAdditionalBrokerInfo(response.data.map(broker => broker.broker_id));
     }).catch((error) => {
-      console.log('s');
+      console.log(error)
     });
   };
 
@@ -45,7 +68,6 @@ class BrokerOverview extends Component {
         brokerIds: brokerIds
       }
     }).then((response) => {
-      console.log(response);
       this.setState((prevState) => {
         return {
           brokers: _.map(prevState.brokers, function(broker){
@@ -58,30 +80,143 @@ class BrokerOverview extends Component {
     });
   }
 
+  /**
+  * Renders a suggestion in the neighborhood selection autosuggest
+  */
+  renderNeighborhoodSuggestion = suggestion => {
+    return (
+      <span>{suggestion.neighborhood_name}</span>
+    );
+  };
+
+  getNeighborhoodSuggestionValue = suggestion => {
+    console.log(suggestion);
+    return suggestion.neighborhood_name;
+  }
+
+  onChange = (event, { newValue }) => {
+    this.setState({neighborhood: newValue});
+  };
+
+  getNeighborhoods = value => {
+    axios.get('http://localhost:8888/get_neighborhoods.php', {
+      params: {
+        neighborhood: value.value
+      }
+    }).then((response) => {
+      this.setState({neighborhoodOptions: response.data})
+    }).catch((error) => {
+      console.log(value.value);
+    });
+  };
+  
+  removeTag = tag => {
+    this.setState((prevState) => {
+      return {
+        neighborhoods: prevState.neighborhoods.filter(t => t.neighborhood_id !== tag)
+      };
+    });
+  }
+
+  onSuggestionSelected = (event, { suggestion, suggestionValue, suggestionIndex, sectionIndex, method }) => {
+    this.setState((prevState) => {
+      return {
+        neighborhoods: [...prevState.neighborhoods, suggestion],
+        neighborhood: '' 
+      };
+    });
+  };
+
+  renderInputComponent = inputProps => {
+    return (
+      <div className="filterInputContainer">
+        <input {...inputProps} />
+      </div>
+    );
+  }
+
   render() {
     return (
       <Page 
       	pageContent={
-          
           <div className="broker-overview-body-container">
             <div className="broker-overview-container">
               <div className="broker-overview-top-container">
-                <Row>
-                  <Col size={4}>
-                  <label>
-                    Price: <input type="text" placeholder="Min"/>
-                    to <input type="text" placeholder="Max"/>
-                  </label>
-                  </Col>
-                </Row>
-                <div className="neighborhoods">
-
+                <div className='filter-neighborhood-autosuggest'>
+                  <Autosuggest
+                    suggestions={this.state.neighborhoodOptions}
+                    onSuggestionsFetchRequested={this.getNeighborhoods}
+                    onSuggestionsClearRequested={() => this.setState({neighborhoodOptions: []})}
+                    getSuggestionValue={this.getNeighborhoodSuggestionValue}
+                    renderSuggestion={this.renderNeighborhoodSuggestion}
+                    onSuggestionSelected={this.onSuggestionSelected}
+                    renderInputComponent={this.renderInputComponent}
+                    inputProps={{
+                      value: this.state.neighborhood,
+                      placeholder: !(this.state.neighborhoods.length < 5) ? 'Only allowed 5 neighborhoods' : 'Add neighborhoods',
+                      onChange: this.onChange,
+                      disabled: !(this.state.neighborhoods.length < 5)
+                    }}
+                  />
+                  <div>
+                    {
+                      this.state.neighborhoods.map((neighborhood) => {
+                        return (
+                          <Tag
+                            key={neighborhood.neighborhood_id}
+                            label={neighborhood.neighborhood_name}
+                            value={neighborhood.neighborhood_id}
+                            removeTag={this.removeTag}
+                          />
+                        );
+                      })
+                    }
+                  </div>
                 </div>
               </div>
+              <Sticky
+                top={100}
+              >
+                <div className='sticky-filters'>
+                  <h3>Price Range</h3>
+                  <label htmlFor='max'>
+                    Max:&nbsp;
+                    <input name='max' type="text" className="filter-input" placeholder="Max"/>
+                  </label><br/>
+                  <label htmlFor='min'>
+                    Min:&nbsp;
+                    <input name='min' type="text" className="filter-input" placeholder="Min"/>
+                  </label>
+                  <label>
+                    Language:&nbsp;
+                    <Select
+                      value={this.state.languageFilter.value}
+                      onChange={(option) => this.setState({languageFilter: option})}
+                      options={[
+                        { value: 1, label: 'English' },
+                        { value: 2, label: 'Spanish' },
+                      ]}
+                    />
+                  </label>
+                  <label>
+                    Time of day:&nbsp;
+                    <Select
+                      value={this.state.timeOfDayFilter.value}
+                      onChange={(option) => this.setState({timeOfDayFilter: option})}
+                      options={[
+                        { value: 1, label: 'Morning (8AM - 12PM)' },
+                        { value: 2, label: 'Afternoon (12PM - 4PM)' },
+                        { value: 3, label: 'Evening (4PM - 8PM)' }
+                      ]}
+                    />
+                  </label>
+                </div>
+              </Sticky>
               <div className="broker-list">
                 {this.state.brokers.map((broker) => {
                   return (
                     <Link
+                      className="broker-link"
                       to={`/broker/${broker.broker_id}`}
                       key={broker.broker_id}
                     >
