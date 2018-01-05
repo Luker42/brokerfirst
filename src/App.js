@@ -5,6 +5,7 @@ import login_helper from './js/login_helper';
 import Home from './js/Home';
 import BrokerOverview from './js/BrokerOverview';
 import BrokerView from './js/BrokerView';
+import BrokerRegistration from './js/BrokerRegistration';
 import Login from './js/Login';
 
 class App extends Component {
@@ -21,6 +22,7 @@ class App extends Component {
       }
     }).then((response) => {
       if (response.data) {
+        localStorage.clear();
         localStorage.setItem('token', response.data.token);
         localStorage.setItem('user_id', response.data.user_id);
         this.setState({isLoggedIn: true});
@@ -44,6 +46,7 @@ class App extends Component {
               />
             }
           />
+          <Route exact path="/broker_registration" component={BrokerRegistration} />
         </div>
       </Router>
     );

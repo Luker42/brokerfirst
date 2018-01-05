@@ -134,16 +134,14 @@ class Home extends Component {
     						Brokers love the increase in business!
     					</li>
     				</ul>
-    				<Link
-							className="home-broker-join-button-router"
-							to='/search/'
+						<button
+							className="home-broker-join-button"
+							onClick={() => {
+								window.location = 'broker_registration'
+							}}
 						>
-							<button
-								className="home-broker-join-button"
-							>
-								Enroll as a broker
+							Enroll as a broker
 					</button>
-				</Link>
     			</div>
     			<div className='home-broker-join-icon'>
     				<img src='icons/city.svg' className='home-broker-join-icon-svg' />

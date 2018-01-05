@@ -61,7 +61,7 @@ class Login extends Component {
 						      		href=""
 						      		onClick={(e) => {
 						      			e.preventDefault();
-						      			window.location = '/broker_account_creation';
+						      			window.location = '/broker_registration';
 						      		}}
 						      	>
 						      		Register here
