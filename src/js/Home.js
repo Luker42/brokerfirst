@@ -148,6 +148,29 @@ class Home extends Component {
     			</div>
     			</div>
     		</div>
+    		<div className='home-middle-content'>
+    			<div className='home-content'>
+    			<div className='home-broker-join-icon'>
+    				<img src='icons/city.svg' className='home-broker-join-icon-svg' />
+    			</div>
+    			<div className='home-broker-join-right'>
+	    			<div className='home-section-title'>
+	    				Are you NOT a shit broker?
+	    			</div>
+    				<ul className='home-broker-join-list'>
+    					<li className='home-broker-join-list-element'>
+    						Broker's benefit when they sign up with us! 
+    					</li>
+    					<li className='home-broker-join-list-element'>
+    						Sign up is a breeze, simply make a premium account and update your calendar
+    					</li>
+    					<li className='home-broker-join-list-element'>
+    						Brokers love the increase in business!
+    					</li>
+    				</ul>
+    			</div>
+    			</div>
+    		</div>
       </div>
     );
  	}

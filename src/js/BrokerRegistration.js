@@ -127,20 +127,6 @@ class BrokerRegistration extends Component {
 						      placeholder="Email Address"
 						      onChange={this.handleEmailChange}
 					      />
-					      <Autosuggest
-		      				suggestions={this.state.brokerageOptions}
-		      				onSuggestionsFetchRequested={this.getBrokerages}
-		      				onSuggestionsClearRequested={() => this.setState({brokerageOptions: []})}
-		      				getSuggestionValue={this.getBrokerageSuggestionValue}
-		      				renderSuggestion={this.renderBrokerageSuggestion}
-		      				onSuggestionSelected={this.onSuggestionSelected}
-		      				renderInputComponent={this.renderInputComponent}
-		      				inputProps={{
-		      					value: this.state.brokerage,
-		      					placeholder: 'Brokerage',
-		    						onChange: this.onChange
-		    					}}
-	    					/>
 					      <button
 					      	onClick={this.handleRegisterClick}
 					      	disabled={this.state.password === '' || this.state.emailValue === '' || this.state.firstName === '' || this.state.lastName === ''}

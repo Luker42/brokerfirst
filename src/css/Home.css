@@ -69,6 +69,13 @@
   top: 50%;
   transform: translateY(-50%);
 }
+.home-broker-join-right { 
+  width: 50%;
+  float: right;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
 .home-section-title {
   font-size: 36pt;
 }
@@ -78,8 +85,11 @@
 .home-broker-join-list-element {
   padding-bottom: 20px;
 }
-.home-broker-join-icon {
+.home-broker-join-icon-left {
   float: right;
+}
+.home-broker-join-icon-left {
+  float: left;
 }
 .home-broker-join-icon-svg {
   height: 400px;

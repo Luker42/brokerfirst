@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import StarRating from 'react-star-ratings';
 import Page from './Page';
 import _ from 'underscore';
 import Review from './Review';
 import Listing from './Listing';
 import Availability from './Availability';
+import BrokerInfo from './BrokerInfo';
 import { Col, Row } from 'react-grid-system'; 
 import '../css/BrokerView.css';
 
@@ -16,14 +16,16 @@ class BrokerView extends Component {
     brokerId: '',
     broker: {},
     reviews: [],
-    listings: []
-  };
+    listings: [],
+    isCurrentBrokerAccount: false
+  }
 
   componentDidMount = () => {
     this.setState(() => {
       if (typeof(this.props.match.params.brokerId) !== 'undefined') {
         return {
-          brokerId: this.props.match.params.brokerId
+          brokerId: this.props.match.params.brokerId,
+          isCurrentBrokerAccount: localStorage.broker_id === this.props.match.params.brokerId
         };
       }
     }, () => {
@@ -114,55 +116,6 @@ class BrokerView extends Component {
     });
   };
 
-  brokerInfo = () => {
-    return (
-      <div className="brokerview-info">
-        <div className="broker-avatar-container">
-          <img
-            className="brokerview-avatar"
-            src={this.state.broker.broker_avatar}
-            alt={this.state.broker.broker_alt}
-          />
-          <div className="brokerview-avatar-info">
-            <div className="brokerview-name">
-              {`${this.state.broker.broker_first_name} ${this.state.broker.broker_last_name}`}
-            </div>
-            <a href="#" className="brokerage">
-              {this.state.broker.brokerage_name}
-            </a>
-            <div>
-              <StarRating
-                rating={Math.round(this.state.broker.broker_rating * 10) / 10}
-                starWidthAndHeight={'20px'}
-                numOfStars={5}
-                starRatedColor={'#f6b85c'}
-                starEmptyColor={'rgb(109, 122, 130)'}
-              />
-            </div>
-          </div>
-        </div>
-        <div className="brokerview-info-line">
-          Bio: {this.state.broker.broker_bio}
-        </div>
-        <div className="brokerview-info-line">
-          Experience: {this.state.broker.broker_experience}
-        </div>
-        <div className="brokerview-info-line">
-          Interests: {this.state.broker.broker_interests}
-        </div>
-        <div className="brokerview-info-line">
-          Education: {this.state.broker.broker_education}
-        </div>
-        <div className="brokerview-info-line">
-          <button
-              className="brokerview-message-button"
-            >
-              {`Message ${this.state.broker.broker_first_name}`}
-          </button>
-        </div>
-      </div>
-    );
-  }
 
   brokerAvailability = () => {
     return (
@@ -178,13 +131,21 @@ class BrokerView extends Component {
       <Page 
         pageContent={(
           <div className="brokerview-container">
+            {this.state.isCurrentBrokerAccount &&
+              <div className="brokerview-fill-out-info">
+                <h3>This is your account! Add more information so we can make you show up in more peoples searches.</h3>
+              </div>
+            }
             <Row>
             <Col
               lg={4} 
               className="brokerview-info"
               style={adjustRight}
             >
-              {this.brokerInfo()}
+              <BrokerInfo 
+                broker={this.state.broker}
+                isCurrentBrokerAccount={this.state.isCurrentBrokerAccount}
+              />
             </Col>
             <Col lg={7}>
               <h2>Availability</h2>

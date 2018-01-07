@@ -23,20 +23,19 @@
 }
 .navigation {
 	float:right;
-    list-style-type: none;
-    padding: 0;
-    height:80px;
+  list-style-type: none;
+  padding: 0;
+  height: 80px;
 }
 .navigation-element{
 	float:left;
 } 
 .navigation-element-link {
-    display: block;
-    width: 40%;
-    color:#999;
-    text-decoration: none;
-    padding:10px;
-    font-size:16pt;
+  display: block;
+  color:#999;
+  text-decoration: none;
+  padding:10px;
+  font-size:16pt;
 }
 
 .navigation-element-link:hover {

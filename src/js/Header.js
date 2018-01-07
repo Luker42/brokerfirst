@@ -33,12 +33,30 @@ class Header extends Component {
 	        			<a className='navigation-element-link' href=''>About</a>
 	        		</li>
 	        		<li className='navigation-element'>
-	        			<Link
-        					to='/login'
-        					className='navigation-element-link'
-	        			>
-	        				Login
-	        			</Link>
+	        			{!localStorage.user_id && !localStorage.broker_id &&
+		        			<Link
+	        					to='/login'
+	        					className='navigation-element-link'
+		        			>
+		        				Login
+		        			</Link>
+	        			}
+        				{localStorage.user_id &&
+		        			<Link
+	        					to='/'
+	        					className='navigation-element-link'
+		        			>
+		        				My Account
+		        			</Link>
+	        			}
+	        			{localStorage.broker_id &&
+		        			<Link
+	        					to={`/broker/${localStorage.broker_id}`}
+	        					className='navigation-element-link'
+		        			>
+		        				My Account
+		        			</Link>
+	        			}
 	        		</li>
 	        	</ul> 
 	        </div>

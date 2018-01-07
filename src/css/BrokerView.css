@@ -2,54 +2,14 @@
 	width: 95%;
 	margin: 0 auto;
 }
-.broker-avatar-container {
-	margin-top: 10px;
-	margin-left: 10px;
-	overflow: auto;
-}
-.brokerview-avatar {
-	height: 120px;
-	width: 120px;
-	border-radius: 50%;
-	float: left;
-}
-.brokerview-avatar-info {
-	margin-top: 20px;
-	height: 100%;
-	width: 60%;
-	float: right;
-}
-.broker-rating {
-	width: 100%;
-}
-.brokerview-name {
-	font-size: 16pt;
-}
-.brokerview-info {
-	height: 420px; /*LOL*/
-	margin-left: 20px;
-	margin-top: 10px;
-	background-color: #f7f7f7;
-}
-.brokerview-message-button {
-  padding: 17px 17px;
-  color:#416dea;
-  border: 2px solid #416dea;
-  background: white;
-
-  font-size: 13px;
-  font-weight: 500;
-
-  justify-content: center;
-  align-items: center;
-  flex: 0 0 160px;
-
-  box-shadow: 2px 5px 10px #e4e4e4;
-}
-.brokerview-message-button:hover {
-  color:#FFFFFF;
-  border: 2px solid #416dea;
-  background-color: #416dea;
+.brokerview-fill-out-info {
+	text-align: center;
+	width: 85%;
+	height: 60px;
+	margin: 0 auto;
+	border-style: solid;
+	border-color: #f7f7f7;
+	border-radius: 2px;
 }
 .brokerview-top-container {
 	width: 100%;
@@ -64,9 +24,4 @@
 }
 .brokerview-listings-container {
 	margin-bottom: 10px;
-}
-.brokerview-info-line {
-	padding-top: 10px;
-	overflow-wrap: normal;
-	float: left;
 }

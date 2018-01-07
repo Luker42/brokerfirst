@@ -33,7 +33,6 @@ class BrokerOverview extends Component {
 
   // Set state to passed in neighborhoods and call load brokers as callback
   componentDidMount = () => {
-    window.onscroll = this.horizontalPositionStickyFilters;
     this.setState(() => {
       if (typeof(this.props.match.params.neighborhoods) !== 'undefined') {
         return {
@@ -41,12 +40,6 @@ class BrokerOverview extends Component {
         };
       }
     }, this.loadBrokers());
-  };
-
-  horizontalPositionStickyFilters = () => {
-    const stickyInnerWrapper = document.getElementsByClassName('sticky-inner-wrapper')[0];
-    const positionLeft = stickyInnerWrapper.style.position === 'relative' ? '0px' : `${(100 - window.scrollX).toString()}px`; 
-    stickyInnerWrapper.style.left = positionLeft;
   };
 
   loadBrokers = () => {
@@ -173,20 +166,9 @@ class BrokerOverview extends Component {
                     }
                   </div>
                 </div>
-              </div>
-              <Sticky
-                top={100}
-              >
-                <div className='sticky-filters'>
-                  <h3>Price Range</h3>
-                  <label htmlFor='max'>
-                    Max:&nbsp;
-                    <input name='max' type="text" className="filter-input" placeholder="Max"/>
-                  </label><br/>
-                  <label htmlFor='min'>
-                    Min:&nbsp;
-                    <input name='min' type="text" className="filter-input" placeholder="Min"/>
-                  </label>
+                <h3>Price Range</h3>
+                  <input name='max' type="text" className="filter-input" placeholder="Max"/>
+                  <input name='min' type="text" className="filter-input" placeholder="Min"/>
                   <label>
                     Language:&nbsp;
                     <Select
@@ -210,8 +192,7 @@ class BrokerOverview extends Component {
                       ]}
                     />
                   </label>
-                </div>
-              </Sticky>
+              </div>
               <div className="broker-list">
                 {this.state.brokers.map((broker) => {
                   return (
