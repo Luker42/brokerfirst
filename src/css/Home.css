@@ -10,20 +10,29 @@
 	min-width: 1400px;
 	display: table;
 }
+.home-hero-text {
+  font-size:36pt;
+  color: white;
+  text-align: center;
+  height: 20%;
+}
+.home-hero-text>span {
+  vertical-align: bottom;
+}
 .neighborhood-vertical-align {
 	display: table-cell;
 	vertical-align: middle;
 }
-.inputContainer {
-	position: relative;
+.input-container {
+  position: relative;
 }
 .homepage-neighborhood-search {
 	position: absolute;
-	float:right;
 	display: flex;
 	overflow: hidden;
 
-	top: 5px;
+  height: 50px;
+	top: 0px;
   right: 20px;
 
 	padding: 17px 17px;
@@ -61,20 +70,6 @@
   height: 400px;
   width: 75%;
   margin: 0 auto;
-}
-.home-broker-join-left { 
-  width: 50%;
-  float: left;
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
-}
-.home-broker-join-right { 
-  width: 50%;
-  float: right;
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
 }
 .home-section-title {
   font-size: 36pt;
@@ -119,13 +114,12 @@
   text-decoration: none;
   fill: #FFFFFF;
 }
-
 .react-autosuggest__container {
   position: relative;
 }
 
 .react-autosuggest__input {
-  width: 85%;
+  width: 90%;
   height: 30px;
   padding: 10px 20px;
   font-family: Helvetica, sans-serif;

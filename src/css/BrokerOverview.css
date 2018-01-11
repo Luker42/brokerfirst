@@ -12,8 +12,8 @@
 	margin-right: auto;
 }
 .broker-overview-top-container {
-	height: 80px;
 	width: 100%;
+	overflow: visible;
 }
 .broker-link {
 	text-decoration: none;
@@ -30,9 +30,45 @@
   font-size: 14px;
 }
 .filter-input-container {
-
+	border: 1px solid #aaa;
+	width: 85%;
+}
+.filter-autosuggest-input {
+	width: 200px;
+  height: 30px;
+  padding: 10px 20px;
+  font-family: Helvetica, sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  border: none;
+}
+.filter-autosuggest-input:focus {
+	outline: none;
 }
 .filter-neighborhood-autosuggest {
 	width: 80%;
 	margin: 0 auto;
+}
+.filter-tag-container {
+	display: block;
+	float: right;
+}
+.filter-row {
+}
+.filter-timeofday {
+	width: 200px;
+}
+.filter-language {
+	width: 200px;
+}
+.filter-sort {
+	width: 120px;
+}
+.filter-sort>.Select-control{
+	border: none;
+	outline: none;
+}
+.Select-menu-outer {
+	z-index: 1000;
+	position:absolute;
 }

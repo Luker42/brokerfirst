@@ -3,6 +3,7 @@ import Page from './Page';
 import Autosuggest from 'react-autosuggest';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { Row, Col } from 'react-grid-system'
 import Tag from './Tag';
 import '../css/Home.css';
 
@@ -63,7 +64,7 @@ class Home extends Component {
 
   renderInputComponent = inputProps => {
 	  return (
-		  <div className="inputContainer">
+		  <div className="input-container">
 		    <input {...inputProps} />
 		    <Link
 					className="neighborhood-router-link"
@@ -84,6 +85,9 @@ class Home extends Component {
  			<div className='home'>
     		<div className='home-hero-image'>
     			<div className='neighborhood-vertical-align'>
+    				<div className='home-hero-text'>
+    					List your neighborhoods, they’ll take care of the rest
+    				</div>
       			<div className='neighborhood-autosuggest'>
 	      			<Autosuggest
 	      				suggestions={this.state.neighborhoodOptions}
@@ -119,58 +123,69 @@ class Home extends Component {
     		</div>
     		<div className='home-middle-content'>
     			<div className='home-content'>
-    			<div className='home-broker-join-left'>
-	    			<div className='home-section-title'>
-	    				Are you NOT a shit broker?
-	    			</div>
-    				<ul className='home-broker-join-list'>
-    					<li className='home-broker-join-list-element'>
-    						Broker's benefit when they sign up with us! 
-    					</li>
-    					<li className='home-broker-join-list-element'>
-    						Sign up is a breeze, simply make a premium account and update your calendar
-    					</li>
-    					<li className='home-broker-join-list-element'>
-    						Brokers love the increase in business!
-    					</li>
-    				</ul>
-						<button
-							className="home-broker-join-button"
-							onClick={() => {
-								window.location = 'broker_registration'
-							}}
-						>
-							Enroll as a broker
-					</button>
+	    			<Row>
+		    			<Col lg={7} className='home-broker-join-left'>
+			    			<div className='home-section-title'>
+			    				Are you NOT a shit broker?
+			    			</div>
+		    				<ul className='home-broker-join-list'>
+		    					<li className='home-broker-join-list-element'>
+		    						Broker's benefit when they sign up with us! 
+		    					</li>
+		    					<li className='home-broker-join-list-element'>
+		    						Sign up is a breeze, simply make a premium account and update your calendar
+		    					</li>
+		    					<li className='home-broker-join-list-element'>
+		    						Brokers love the increase in business!
+		    					</li>
+		    				</ul>
+								<button
+									className="home-broker-join-button"
+									onClick={() => {
+										window.location = 'broker_registration'
+									}}
+								>
+									Enroll as a broker
+							</button>
+							</Col>
+		    			<Col lg={5} className='home-broker-join-icon'>
+		    				<img src='icons/city.svg' className='home-broker-join-icon-svg' />
+		    			</Col>
+	    			</Row>
     			</div>
-    			<div className='home-broker-join-icon'>
-    				<img src='icons/city.svg' className='home-broker-join-icon-svg' />
-    			</div>
-    			</div>
-    		</div>
-    		<div className='home-middle-content'>
     			<div className='home-content'>
-    			<div className='home-broker-join-icon'>
-    				<img src='icons/city.svg' className='home-broker-join-icon-svg' />
-    			</div>
-    			<div className='home-broker-join-right'>
-	    			<div className='home-section-title'>
-	    				Are you NOT a shit broker?
-	    			</div>
-    				<ul className='home-broker-join-list'>
-    					<li className='home-broker-join-list-element'>
-    						Broker's benefit when they sign up with us! 
-    					</li>
-    					<li className='home-broker-join-list-element'>
-    						Sign up is a breeze, simply make a premium account and update your calendar
-    					</li>
-    					<li className='home-broker-join-list-element'>
-    						Brokers love the increase in business!
-    					</li>
-    				</ul>
-    			</div>
+	    			<Row>
+		    			<Col lg={5} className='home-broker-join-icon'>
+		    				<img src='icons/city.svg' className='home-broker-join-icon-svg' />
+		    			</Col>
+		    			<Col lg={7} className='home-broker-join-left'>
+			    			<div className='home-section-title'>
+			    				Are you NOT a shit broker?
+			    			</div>
+		    				<ul className='home-broker-join-list'>
+		    					<li className='home-broker-join-list-element'>
+		    						Broker's benefit when they sign up with us! 
+		    					</li>
+		    					<li className='home-broker-join-list-element'>
+		    						Sign up is a breeze, simply make a premium account and update your calendar
+		    					</li>
+		    					<li className='home-broker-join-list-element'>
+		    						Brokers love the increase in business!
+		    					</li>
+		    				</ul>
+								<button
+									className="home-broker-join-button"
+									onClick={() => {
+										window.location = 'broker_registration'
+									}}
+								>
+									Enroll as a broker
+								</button>
+							</Col>
+	    			</Row>
     			</div>
     		</div>
+    		
       </div>
     );
  	}

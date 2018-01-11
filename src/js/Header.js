@@ -6,7 +6,9 @@ import '../css/Header.css';
 class Header extends Component {
   render() {
     return (
-      <Headroom>
+      <Headroom
+      	disableInlineStyles
+      >
       	<div className='header-full'>
 	        <div className='header'>
 	        	<div className='header-logo'>

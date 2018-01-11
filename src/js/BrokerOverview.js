@@ -4,7 +4,7 @@ import Page from './Page';
 import Broker from './Broker';
 import _ from 'underscore';
 import { Link } from 'react-router-dom';
-import Sticky from 'react-stickynode';
+import { Row, Col } from 'react-grid-system';
 import Select from 'react-select';
 import Autosuggest from 'react-autosuggest';
 import Tag from './Tag';
@@ -26,6 +26,7 @@ class BrokerOverview extends Component {
       label: '',
       value: 0
     },
+    sortMethod: {},
     neighborhoodOptions: [],
     neighborhood: "",
     neighborhoods: []
@@ -122,8 +123,22 @@ class BrokerOverview extends Component {
 
   renderInputComponent = inputProps => {
     return (
-      <div className="filterInputContainer">
+      <div className="filter-input-container">
         <input {...inputProps} />
+        <div className="filter-tag-container">
+          {
+            this.state.neighborhoods.map((neighborhood) => {
+              return (
+                <Tag
+                  key={neighborhood.neighborhood_id}
+                  label={neighborhood.neighborhood_name}
+                  value={neighborhood.neighborhood_id}
+                  removeTag={this.removeTag}
+                />
+              );
+            })
+          }
+        </div>
       </div>
     );
   }
@@ -148,50 +163,60 @@ class BrokerOverview extends Component {
                       value: this.state.neighborhood,
                       placeholder: !(this.state.neighborhoods.length < 5) ? 'Only allowed 5 neighborhoods' : 'Add neighborhoods',
                       onChange: this.onChange,
-                      disabled: !(this.state.neighborhoods.length < 5)
+                      disabled: !(this.state.neighborhoods.length < 5),
+                      className: 'filter-autosuggest-input'
                     }}
                   />
-                  <div>
-                    {
-                      this.state.neighborhoods.map((neighborhood) => {
-                        return (
-                          <Tag
-                            key={neighborhood.neighborhood_id}
-                            label={neighborhood.neighborhood_name}
-                            value={neighborhood.neighborhood_id}
-                            removeTag={this.removeTag}
-                          />
-                        );
-                      })
-                    }
-                  </div>
                 </div>
-                <h3>Price Range</h3>
-                  <input name='max' type="text" className="filter-input" placeholder="Max"/>
-                  <input name='min' type="text" className="filter-input" placeholder="Min"/>
-                  <label>
-                    Language:&nbsp;
+                <Row className="filter-row">
+                  <Col lg={3}>
+                    <div>Price Range</div>
+                    <input name='max' type="text" className="filter-input" placeholder="Max"/>
+                    <input name='min' type="text" className="filter-input" placeholder="Min"/>
+                  </Col>
+                  <Col lg={3}>
+                    <label>
+                      Language:&nbsp;
+                      <Select
+                        value={this.state.languageFilter.value}
+                        onChange={(option) => this.setState({languageFilter: option})}
+                        options={[
+                          { value: 1, label: 'English' },
+                          { value: 2, label: 'Spanish' },
+                        ]}
+                        className="filter-language"
+                      />
+                    </label>
+                  </Col>
+                  <Col lg={3}>
+                    <label>
+                      Time of day:&nbsp;
+                      <Select
+                        value={this.state.timeOfDayFilter.value}
+                        onChange={(option) => this.setState({timeOfDayFilter: option})}
+                        options={[
+                          { value: 1, label: 'Morning (8AM - 12PM)' },
+                          { value: 2, label: 'Afternoon (12PM - 4PM)' },
+                          { value: 3, label: 'Evening (4PM - 8PM)' }
+                        ]}
+                        className="filter-timeofday"
+                      />
+                    </label>
+                  </Col>
+                  <Col lg={3}>
+                    <label>Sort by:
                     <Select
-                      value={this.state.languageFilter.value}
-                      onChange={(option) => this.setState({languageFilter: option})}
+                      value={this.state.sortMethod.value}
+                      onChange={(option) => this.setState({sortMethod: option})}
                       options={[
-                        { value: 1, label: 'English' },
-                        { value: 2, label: 'Spanish' },
+                        { value: 1, label: 'Rating' },
+                        { value: 2, label: 'Response time' }
                       ]}
+                      className="filter-sort"
                     />
-                  </label>
-                  <label>
-                    Time of day:&nbsp;
-                    <Select
-                      value={this.state.timeOfDayFilter.value}
-                      onChange={(option) => this.setState({timeOfDayFilter: option})}
-                      options={[
-                        { value: 1, label: 'Morning (8AM - 12PM)' },
-                        { value: 2, label: 'Afternoon (12PM - 4PM)' },
-                        { value: 3, label: 'Evening (4PM - 8PM)' }
-                      ]}
-                    />
-                  </label>
+                    </label>
+                  </Col>
+                </Row>
               </div>
               <div className="broker-list">
                 {this.state.brokers.map((broker) => {
